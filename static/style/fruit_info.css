@@ -1,0 +1,142 @@
+/* Google font */
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+html {
+  background-color: #68928b;
+}
+
+* {
+  font-family: "Public Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #b38312;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 5em;
+  margin-left: 5rem;
+}
+
+nav {
+  margin-right: 5rem;
+}
+
+nav a {
+  margin: 0 15px;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  height: 75vh;
+  padding: 2em 0;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.disclaimer {
+  width: 85%;
+}
+.disclaimer h3 {
+  color: #7d1519;
+}
+.disclaimer p {
+  color: #fff;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.fruit-image {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.info {
+  text-align: left;
+  max-width: 400px;
+  height: 20em;
+  overflow-y: scroll;
+}
+
+.info h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.info p,
+.info ul {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+footer {
+  padding: 20px 0;
+  /* background-color: #e3a40e; */
+  background-color: #b38312;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  width: 100%;
+  font-size: 18px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Mobile */
+@media only screen and (max-width: 900px) {
+  main {
+    height: 100vh;
+    padding: 6em 0;
+  }
+
+  .logo {
+    margin-left: 2rem;
+  }
+  nav {
+    margin-right: 1rem;
+  }
+  nav a {
+    margin: 0 10px;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .info {
+    max-width: 310px;
+  }
+}
