@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="{% static 'assets/favicon2.png' %}"
+      type="image/x-icon"
+    />
+    <title>Fruits Info</title>
+    <link rel="stylesheet" href="{% static 'style/fruit_info.css' %}" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="{% static 'assets/FRUITS_INFO_LOGO-removebg-preview.png' %}"
+        alt="Logo"
+        class="logo"
+      />
+      <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <!-- <a href="#">Contact us</a> -->
+      </nav>
+    </header>
+    <div id="spinner" class="loader" style="display: none"></div>
+    <main>
+      <div class="disclaimer">
+        <h3>Disclaimer:</h3>
+        <p>
+          This AI project is a proof of concept and may make incorrect
+          predictions. Please verify results independently.
+        </p>
+      </div>
+      <div class="content">
+        <div class="fruit-box" id="fruitBox">
+          <img alt="Fruit Image" class="fruit-image" id="fruitImage" />
+        </div>
+        <div class="info">
+          {% if fruit %}
+
+          <h1>{{fruit}}</h1>
+
+          {% else %}
+
+          <h1>Name of Fruit</h1>
+
+          {% endif %}
+
+          <p><strong>Health Benefits:</strong></p>
+          <div class="container-info">
+            {% if benefits %} {% for key, value in benefits.items %}
+
+            <h4>{{key}}</h4>
+            <p>{{value}}</p>
+
+            {% endfor %} {% else %}
+
+            <p>Error occured, please try again later.</p>
+
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+    <br /><br />
+    <footer>
+      Powered by
+      <a href="https://github.com/amankanz" target="_blank">Kaneza</a> &
+      <a href="https://github.com/amunipelumi" target="_blank">Amuni</a> -
+      Fruits Info
+    </footer>
+
+    <!-- JS -->
+    <script src="{% static 'script/display_fruit.js' %}"></script>
+  </body>
+</html>
