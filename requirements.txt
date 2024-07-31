@@ -3,6 +3,7 @@ anyio==4.4.0
 asgiref==3.8.1
 Brotli==1.1.0
 certifi==2024.7.4
+cffi==1.16.0
 click==8.1.7
 colorama==0.4.6
 coloredlogs==15.0.1
@@ -14,6 +15,8 @@ django-crispy-forms==1.14.0
 django-environ==0.11.2
 exceptiongroup==1.2.2
 flatbuffers==24.3.25
+gevent==24.2.1
+greenlet==3.0.3
 groq==0.9.0
 gunicorn==22.0.0
 h11==0.14.0
@@ -30,6 +33,8 @@ packaging==24.1
 pillow==10.4.0
 protobuf==5.27.2
 psycopg2==2.9.9
+psycopg2-binary==2.9.9
+pycparser==2.22
 pydantic==2.8.2
 pydantic_core==2.20.1
 pyreadline3==3.4.1
@@ -41,3 +46,5 @@ typing_extensions==4.12.2
 tzdata==2024.1
 uvicorn==0.30.3
 whitenoise==6.7.0
+zope.event==5.0
+zope.interface==6.4.post2
