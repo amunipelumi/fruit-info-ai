@@ -11,4 +11,4 @@ Environment="Path=/home/amuni/my_applications/fruit-info-ai/venv/bin"
 ExecStart=/home/amuni/my_applications/fruit-info-ai/venv/bin/gunicorn -w 4 --worker-class=gevent -b 0.0.0.0:5000 fruit_info.wsgi:application
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.targe
