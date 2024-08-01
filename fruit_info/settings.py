@@ -19,7 +19,7 @@ from dj_database_url import parse
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env(join(BASE_DIR, '.env-fruit-info'))
+environ.Env.read_env(join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
