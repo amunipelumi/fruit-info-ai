@@ -12,15 +12,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import environ
 from pathlib import Path
-from os.path import abspath, dirname, join
+from os.path import join
 from dj_database_url import parse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIRR = dirname(dirname(abspath(__file__)))
 
 env = environ.Env()
-environ.Env.read_env(join(BASE_DIR, '.env'))
+environ.Env.read_env(join(BASE_DIR, '.env-fruit-info'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -34,7 +33,7 @@ SECRET_KEY = env('DJANGO_SECRET')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
-    '*',
+    'localhost',
 ]
 
 
@@ -57,7 +56,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -88,26 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# def database():
-#     try:
-#         DATABASES = {
-#             'default': parse(env('DATABASE_URL'))
-#         }
-#         return DATABASES
-    
-#     except:
-#         DATABASES = {
-#             'default': {
-#                 'ENGINE': 'django.db.backends.sqlite3',
-#                 'NAME': BASE_DIR / 'db.sqlite3',
-#             }
-#         }
-#         return DATABASES
-    
-# DATABASES = database()
 
 DATABASES = {
     'default': parse(env('DATABASE_URL'))
@@ -156,8 +135,8 @@ STATICFILES_DIRS = [
     join(BASE_DIR, 'static'),
 ]
 
-if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# if not DEBUG:
+#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
