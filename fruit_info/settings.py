@@ -10,14 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+
 import environ
 from pathlib import Path
-from os.path import abspath, dirname, join
+from os.path import join
 from dj_database_url import parse
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIRR = dirname(dirname(abspath(__file__)))
 
 env = environ.Env()
 environ.Env.read_env(join(BASE_DIR, '.env'))
@@ -27,15 +28,15 @@ environ.Env.read_env(join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-$^g_acw%cw%@s3!u5o&nh)x*dw==-s3q&mo3r-)lg))rimtjv^'
+
 SECRET_KEY = env('DJANGO_SECRET')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [
-    '*',
-]
+# SECURITY WARNING: don't run with debug turned on in production!
+
+DEBUG = env('DEBUG').lower() in ('true', 'yes', '1')
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -91,23 +92,6 @@ WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# def database():
-#     try:
-#         DATABASES = {
-#             'default': parse(env('DATABASE_URL'))
-#         }
-#         return DATABASES
-    
-#     except:
-#         DATABASES = {
-#             'default': {
-#                 'ENGINE': 'django.db.backends.sqlite3',
-#                 'NAME': BASE_DIR / 'db.sqlite3',
-#             }
-#         }
-#         return DATABASES
-    
-# DATABASES = database()
 
 DATABASES = {
     'default': parse(env('DATABASE_URL'))
