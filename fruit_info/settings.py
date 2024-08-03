@@ -10,32 +10,32 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-import environ
+import os
 from pathlib import Path
-from os.path import join
+from dotenv import load_dotenv
 from dj_database_url import parse
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
-environ.Env.read_env(join(BASE_DIR, '.env'))
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-$^g_acw%cw%@s3!u5o&nh)x*dw==-s3q&mo3r-)lg))rimtjv^'
-SECRET_KEY = env('DJANGO_SECRET')
+SECRET_KEY = os.getenv('DJANGO_SECRET')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1')
+
 
 ALLOWED_HOSTS = [
     'localhost',
 ]
-
 
 # Application definition
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
 
 DATABASES = {
-    'default': parse(env('DATABASE_URL'))
+    'default': parse(os.getenv('DATABASE_URL'))
 }
 
 
@@ -129,10 +129,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # if not DEBUG:
