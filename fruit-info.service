@@ -7,7 +7,6 @@ User=amuni
 Group=amuni
 EnvironmentFile=/home/amuni/.env
 WorkingDirectory=/home/amuni/my_applications/fruit-info-ai
-Environment="Path=/home/amuni/my_applications/fruit-info-ai/venv/bin"
 ExecStart=/home/amuni/my_applications/fruit-info-ai/fruit-info.sh
 
 [Install]
