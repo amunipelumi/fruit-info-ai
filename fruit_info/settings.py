@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
 
 DATABASES = {
-    'default': parse(os.getenv('DATABASE_URL'))
+    'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
 }
 
 
