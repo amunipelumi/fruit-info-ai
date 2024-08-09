@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
+CONTAINER = os.getenv('CONTAINER').lower() in ('true')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -28,12 +29,10 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET')
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1')
+DEBUG = os.getenv('DEBUG').lower() in ('true', '1')
 
-
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -85,10 +84,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
+def database():
 
-DATABASES = {
-    'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
-}
+    if CONTAINER:
+        db = {
+            'default': parse(os.getenv('DATABASE_FRUIT_INFO_C'))
+        }
+        return db
+    
+    else:
+        db = {
+            'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
+        }
+        return db
+
+DATABASES = database()
 
 
 # Password validation
