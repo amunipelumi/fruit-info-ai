@@ -11,8 +11,8 @@ services:
       - /home/amuni/.env:./.env:ro
       - ./:./:ro
 
-    env_file:
-      - ./.env
+    # env_file:
+    #   - ./.env
 
     command: >
       bash -c "python manage.py collectstatic --noinput &&
