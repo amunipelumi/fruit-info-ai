@@ -1,0 +1,10 @@
+###
+__pycache__
+/venv
+.gitignore
+fruit-info.sh
+fruit-info.service
+compose.yaml
+Dockerfile
+LICENSE
+README.md
