@@ -92,11 +92,10 @@ def database():
         }
         return db
     
-    else:
-        db = {
-            'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
-        }
-        return db
+    db = {
+        'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
+    }
+    return db
 
 DATABASES = database()
 
