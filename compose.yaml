@@ -8,11 +8,8 @@ services:
       - "6000:6000"
 
     volumes:
-      - /home/amuni/.env:./.env:ro
-      - ./:./:ro
-
-    # env_file:
-    #   - ./.env
+      - /home/amuni/.env:/fruit-info-ai/.env:ro
+      - /home/amuni/my_applications/fruit-info-ai:/fruit-info-ai:ro
 
     command: >
       bash -c "python manage.py collectstatic --noinput &&
