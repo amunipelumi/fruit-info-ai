@@ -14,14 +14,15 @@ def cached_(func):
         if data:
             try:
                 benefits = json.loads(data)
-                # print('from redis')
             except (ValueError, UnicodeDecodeError):
                  pass
         
         if not benefits:
             benefits = func(fruit_n)
-            cache.set(fruit_n, json.dumps(benefits), 43200)
-            # print('not from redis')
+            if len(benefits) > 1:
+                cache.set(fruit_n, json.dumps(benefits), 43200)
+            else:
+                benefits = None
 
         context = {'fruit': fruit_n, 'benefits': benefits}
         # end_time = time.time()

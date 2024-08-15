@@ -7,6 +7,9 @@ services:
     ports:
       - "8000:8000"
 
+    extra_hosts:
+      - "host.docker.internal:host-gateway" 
+      
     volumes:
       - /home/amuni/.env:/fruit-info-ai/.env
       - /home/amuni/my_applications/fruit-info-ai:/fruit-info-ai
