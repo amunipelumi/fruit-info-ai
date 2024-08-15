@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .then((data) => {
             window.location.href = detailspageUrl; // Redirect to the details page
+            spinner.style.display = "none";
+            enableButtons();
           })
           .catch((error) => {
             console.error("Error:", error);

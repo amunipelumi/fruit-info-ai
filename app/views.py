@@ -8,8 +8,9 @@ from PIL import Image
 import numpy as np
 import json
 import base64
+import json
 
-from .agent import health_benefits
+from .redis import get_benefits
 
 
 def homepage(request):
@@ -32,11 +33,7 @@ def second_page(request):
             image = np.float32(Image.open(BytesIO(image)))
             result = inference.fruit_classifier(image)
             fruit_name = result['fruit']
-            benefits = health_benefits(fruit=fruit_name)
-            ctx = {
-                'fruit': fruit_name,
-                'benefits': benefits
-            }
+            ctx = get_benefits(fruit_name)
             return render(request, 'app/fruit_info.html', context=ctx)
-
+    
     return render(request, 'app/fruit_info.html')  

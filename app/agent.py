@@ -10,7 +10,7 @@ api_key = env('GROQ_KEY')
 
 def health_benefits(fruit):
         client = Groq(api_key=api_key)
-        schema = {'benefit': 'detailed explanation'}
+        schema = {'benefit of the fruit': 'detailed explanation'}
         # to prevent a break, i will return none if agent encounters an error.
         try:
             response = client.chat.completions.create(
@@ -18,7 +18,7 @@ def health_benefits(fruit):
                 messages=[
                         {
                             "role": "system",
-                            "content": f"You are a program that returns this kind of JSON schema {schema}"
+                            "content": f"You are a program that returns this kind of JSON schema {schema} very well formatted"
                         },
                         {
                             "role": "user",

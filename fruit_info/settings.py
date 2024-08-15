@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from redis import Redis
 from pathlib import Path
 from dotenv import load_dotenv
 from dj_database_url import parse
@@ -84,20 +85,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
-def database():
 
-    if CONTAINER:
+class MyServer:
+    def database():
+        if CONTAINER:
+            db = {
+                'default': parse(os.getenv('DATABASE_FRUIT_INFO_C'))
+            }
+            return db
+        
         db = {
-            'default': parse(os.getenv('DATABASE_FRUIT_INFO_C'))
+            'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
         }
         return db
     
-    db = {
-        'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
-    }
-    return db
+    def redis():
+        if CONTAINER:
+            return Redis(host=os.getenv('REDIS_HOST_C'), decode_responses=True)
+        return Redis(host=os.getenv('REDIS_HOST'), decode_responses=True)
+        
 
-DATABASES = database()
+DATABASES = MyServer.database()
+
+MRC = MyServer.redis()
 
 
 # Password validation
