@@ -5,8 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /fruit-info-ai
 
-RUN apt-get update && apt-get install -y libgl1-mesa-glx && apt-get install -y net-tools
-
+RUN apt-get update && apt-get install -y libgl1-mesa-glx && apt-get install -y --fix-missing net-tools
 
 COPY requirements.txt ./
 
