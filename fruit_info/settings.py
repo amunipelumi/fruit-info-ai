@@ -101,7 +101,7 @@ class MyServer:
     
     def redis():
         if CONTAINER:
-            return Redis(host=os.getenv('REDIS_HOST_C'), decode_responses=True)
+            return Redis(host=str(os.getenv('REDIS_HOST_C')), decode_responses=True)
         return Redis(host=os.getenv('REDIS_HOST'), decode_responses=True)
         
 
