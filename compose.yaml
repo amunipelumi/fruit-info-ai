@@ -5,19 +5,17 @@ services:
     build: .
 
     ports:
-      - "8000:8000"
-      - "8001:8001"
+      - "5500:5500"
 
     extra_hosts:
       - "host.docker.internal:host-gateway" 
-      
-    volumes:
-      - /home/amuni/.env:/fruit-info-ai/.env
-      - /home/amuni/my_applications/fruit-info-ai:/fruit-info-ai
+
+    env_file:
+      - /home/amuni/my_applications/.env
 
     command: >
       bash -c "python manage.py collectstatic --noinput &&
       python manage.py migrate &&
-      gunicorn -w 4 --worker-class=gevent -b 0.0.0.0:8000 fruit_info.wsgi:application"
+      gunicorn -w 4 --worker-class=gevent -b 0.0.0.0:5500 fruit_info.wsgi:application"
 
     restart: always
