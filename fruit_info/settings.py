@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import socket
 from pathlib import Path
 from dotenv import load_dotenv
 from dj_database_url import parse
@@ -85,6 +86,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
 
+def resolved():
+    try:
+        # Resolve host.docker.internal to an IP address
+        resolved_ip = socket.gethostbyname(os.getenv('REDIS_IP_C'))
+        return resolved_ip
+    
+    except socket.error:
+        return None
+
 class MyServer:
     def database():
         db_info = os.getenv('DATABASE_FRUIT_INFO')
@@ -98,15 +108,16 @@ class MyServer:
         return db
     
     def redis():
-        host = os.getenv('REDIS_HOST')
+        r_pass = os.getenv('REDIS_PASS')
+        r_ip = os.getenv('REDIS_IP')
 
         if CONTAINER:
-            host = os.getenv('REDIS_HOST_C')
+            r_ip = resolved()
             
         cc = {
             "default": {
                 "BACKEND": "django_redis.cache.RedisCache",
-                "LOCATION": f"redis://{host}:6379/0",
+                "LOCATION": f"redis://:{r_pass}@{r_ip}:6379/0",
                 "OPTIONS": {
                     "CLIENT_CLASS": "django_redis.client.DefaultClient",
                 }
