@@ -1,4 +1,5 @@
-from fruit_info.settings import MRC as cache
+# from fruit_info.settings import MRC as cache
+from django.core.cache import cache
 from .agent import health_benefits
 import time
 import json

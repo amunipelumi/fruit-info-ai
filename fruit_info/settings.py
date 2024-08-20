@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-from redis import Redis
 from pathlib import Path
 from dotenv import load_dotenv
 from dj_database_url import parse
@@ -88,27 +87,37 @@ WSGI_APPLICATION = 'fruit_info.wsgi.application'
 
 class MyServer:
     def database():
+        db_info = os.getenv('DATABASE_FRUIT_INFO')
+
         if CONTAINER:
-            db = {
-                'default': parse(os.getenv('DATABASE_FRUIT_INFO_C'))
-            }
-            return db
-        
+            db_info = os.getenv('DATABASE_FRUIT_INFO_C')
+           
         db = {
-            'default': parse(os.getenv('DATABASE_FRUIT_INFO'))
+            'default': parse(db_info)
         }
         return db
     
     def redis():
+        host = os.getenv('REDIS_HOST')
+
         if CONTAINER:
-            return Redis(host=os.getenv('REDIS_HOST_C'), decode_responses=True)
-        return Redis(host=os.getenv('REDIS_HOST'), decode_responses=True)
+            host = os.getenv('REDIS_HOST_C')
+            
+        cc = {
+            "default": {
+                "BACKEND": "django_redis.cache.RedisCache",
+                "LOCATION": f"redis://{host}:6379/0",
+                "OPTIONS": {
+                    "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                }
+            }
+        }
+        return cc
         
 
 DATABASES = MyServer.database()
 
-MRC = MyServer.redis()
-
+CACHES = MyServer.redis()
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
