@@ -7,6 +7,8 @@ WORKDIR /fruit-info-ai
 
 RUN apt-get update && apt-get install -y libgl1-mesa-glx
 
+RUN apt-get update && apt-get install -y inetutils-ping
+
 COPY requirements.txt ./
 
 RUN pip install -U pip && pip install -r requirements.txt
