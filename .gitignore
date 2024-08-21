@@ -3,3 +3,4 @@
 .env
 .env-fruit-info
 __pycache__
+/media

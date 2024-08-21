@@ -56,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
               // Show the spinner
               spinner.style.display = "block";
 
-              fetch(detailspageUrl, {
+              // If you want to use JSON.stringify
+              fetch(detailspageUrl2, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   }
                 })
                 .then((data) => {
-                  window.location.href = detailspageUrl; // Redirect to the details page
+                  window.location.href = detailspageUrl2; // Redirect to the second details page
                   spinner.style.display = "none";
                   enableButtons();
                 })

@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const file = ev.target.files[0];
 
     if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
+
       const reader = new FileReader();
       reader.onload = function (e) {
         let imageData = e.target.result;
@@ -35,11 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fetch(detailspageUrl, {
           method: "POST",
+          body: formData,
           headers: {
-            "Content-Type": "application/json",
             "X-CSRFToken": csrftoken,
           },
-          body: JSON.stringify({ imageData: imageData }),
         })
           .then((response) => {
             if (response.ok) {

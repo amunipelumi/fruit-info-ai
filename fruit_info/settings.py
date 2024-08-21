@@ -183,6 +183,24 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# Configure file storage
+m_root_dir = os.path.join(BASE_DIR, 'media')
+os.makedirs(m_root_dir, exist_ok=True)
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = m_root_dir
+
+
+# Optional: Use cloud storage (e.g., AWS S3) instead of local file system
+# For example, using django-storages with AWS S3:
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = 'your-access-key-id'
+# AWS_SECRET_ACCESS_KEY = 'your-secret-access-key'
+# AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+# AWS_S3_REGION_NAME = 'your-region'
+# AWS_DEFAULT_ACL = None
+
+
 # if not DEBUG:
 #     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
