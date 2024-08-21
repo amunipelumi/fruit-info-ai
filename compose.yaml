@@ -12,6 +12,9 @@ services:
 
     env_file:
       - /home/amuni/my_applications/.env
+    
+    volumes:
+      - /home/amuni/my_applications/fruit-info-ai:/fruit-info-ai
 
     command: >
       bash -c "python manage.py collectstatic --noinput &&

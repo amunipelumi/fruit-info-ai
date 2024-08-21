@@ -124,11 +124,22 @@ class MyServer:
             }
         }
         return cc
-        
+    
 
 DATABASES = MyServer.database()
 
 CACHES = MyServer.redis()
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+SESSION_CACHE_ALIAS = 'default'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_COOKIE_AGE = None
+
+SESSION_SAVE_EVERY_REQUEST = True
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
