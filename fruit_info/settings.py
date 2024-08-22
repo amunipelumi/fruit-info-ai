@@ -18,6 +18,7 @@ from dj_database_url import parse
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
@@ -28,9 +29,11 @@ CONTAINER = os.getenv('CONTAINER').lower() in ('true')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = os.getenv('DJANGO_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = os.getenv('DEBUG').lower() in ('true', '1')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
@@ -107,7 +110,7 @@ class MyServer:
         }
         return db
     
-    def redis():
+    def redis(celery=False):
         r_pass = os.getenv('REDIS_PASS')
         r_ip = os.getenv('REDIS_IP')
 
@@ -123,6 +126,10 @@ class MyServer:
                 }
             }
         }
+
+        if celery is not False:
+            return cc['default']['LOCATION']
+        
         return cc
     
 
@@ -184,6 +191,7 @@ STATICFILES_DIRS = [
 ]
 
 # Configure file storage
+
 m_root_dir = os.path.join(BASE_DIR, 'media')
 os.makedirs(m_root_dir, exist_ok=True)
 
@@ -209,3 +217,29 @@ MEDIA_ROOT = m_root_dir
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Celery setup
+
+CELERY_BROKER_URL = MyServer.redis(celery=True)
+
+CELERY_ACCEPT_CONTENT = ['json']
+
+CELERY_TASK_SERIALIZER = 'json'
+
+
+# Email backend setup 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() in ('true')
+
+EMAIL_HOST_USER = os.getenv('SOURCE_EMAIL')
+
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+DEFAULT_FROM_EMAIL = os.getenv('SOURCE_EMAIL')

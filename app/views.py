@@ -15,6 +15,8 @@ import uuid
 
 from .redis import get_benefits
 
+from django.http import HttpResponse
+from .tasks import email_task
 
 def homepage(request):
     second_page_url = reverse('details_page')
@@ -68,3 +70,9 @@ def second_page2(request):
             return render(request, 'app/fruit_info.html', context=ctx)
     
     return render(request, 'app/fruit_info.html')  
+
+
+def task_view(request):
+    email_task.delay()
+    return HttpResponse('Email sent!!!')
+     
