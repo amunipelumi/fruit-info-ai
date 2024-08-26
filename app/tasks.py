@@ -1,9 +1,11 @@
 from django.core.mail import send_mail
 from celery import shared_task
+from pathlib import Path
 import time
 import os
 
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SUBJECT = 'Fruit-Info AI' 
 MESSAGE = 'This is our first ever mail to you.\nHope this message finds you well' 
@@ -11,15 +13,17 @@ SOURCE = os.getenv('SOURCE_EMAIL')
 DESTINATION = os.getenv('DEST_EMAIL').split(',')
 
 
-# @shared_task
-# def sleepfunc(timer):
-#     time.sleep(timer)
-#     return None
+
+@shared_task
+def delete_images(image):
+    time.sleep(120)
+    os.remove(image)
+    return None
 
 
 @shared_task
 def email_task():
-    time.sleep(15)
+    time.sleep(10)
     send_mail(
         subject=SUBJECT,
         message=MESSAGE,
@@ -27,3 +31,7 @@ def email_task():
         recipient_list=DESTINATION
     )
     return None
+
+
+if __name__ == "__main__":
+    delete_images()

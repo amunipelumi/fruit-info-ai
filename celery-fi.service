@@ -1,0 +1,12 @@
+[Unit]
+Description=Celery service for handling tasks 
+After=network.target
+
+[Service]
+User=amuni
+Group=amuni
+WorkingDirectory=/home/amuni/my_applications/fruit-info-ai
+ExecStart=/home/amuni/my_applications/fruit-info-ai/celery-fi.sh
+
+[Install]
+WantedBy=multi-user.target

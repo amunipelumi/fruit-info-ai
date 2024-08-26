@@ -1,10 +1,11 @@
 
 from django.core.files.storage import default_storage
+from django.http import JsonResponse, HttpResponse
 from django.core.files.base import ContentFile
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from classify import inference
+from datetime import datetime
 from io import BytesIO
 from PIL import Image
 import numpy as np
@@ -13,10 +14,15 @@ import base64
 import json
 import uuid
 
+from .tasks import delete_images, email_task
 from .redis import get_benefits
 
-from django.http import HttpResponse
-from .tasks import email_task
+
+
+def send_email(request):
+    email_task.delay()
+    return HttpResponse('Email sent!!!')
+
 
 def homepage(request):
     second_page_url = reverse('details_page')
@@ -30,7 +36,7 @@ def second_page(request):
     if request.method == "POST":
         if 'image' in request.FILES:
             image = request.FILES['image']
-            filename = f'{uuid.uuid4()}.{image.name.split(".")[-1]}'
+            filename = f'{datetime.now().strftime("%Y%m%d%H%M%S")}-{uuid.uuid4()}.{image.name.split(".")[-1]}'
             file_path = default_storage.save(filename, ContentFile(image.read()))
             # print(file_path)
             # file_url = default_storage.url(file_path)
@@ -40,11 +46,18 @@ def second_page(request):
     
     image_path = request.session.get('path')
     if image_path:
-            image = default_storage.path(image_path)
-            image = np.float32(Image.open(image))
+            image_path = default_storage.path(image_path)
+            # print(image_path)
+
+            try:
+                image = np.float32(Image.open(image_path))
+            except FileNotFoundError:
+                 return redirect('home')
+            
             result = inference.fruit_classifier(image)
             fruit_name = result['fruit']
             ctx = get_benefits(fruit_name)
+            delete_images.delay(image_path)
             return render(request, 'app/fruit_info.html', context=ctx)
     
     return render(request, 'app/fruit_info.html')  
@@ -70,9 +83,3 @@ def second_page2(request):
             return render(request, 'app/fruit_info.html', context=ctx)
     
     return render(request, 'app/fruit_info.html')  
-
-
-def task_view(request):
-    email_task.delay()
-    return HttpResponse('Email sent!!!')
-     
