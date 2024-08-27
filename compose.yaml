@@ -21,4 +21,23 @@ services:
       python manage.py migrate &&
       gunicorn -w 4 --worker-class=gevent -b 0.0.0.0:5500 fruit_info.wsgi:application"
 
+    depends_on:
+      - celery
+
+    restart: always
+
+  celery:
+    build: .
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway" 
+
+    env_file:
+      - /home/amuni/my_applications/.env
+
+    volumes:
+      - /home/amuni/my_applications/fruit-info-ai:/fruit-info-ai
+
+    command: celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
+
     restart: always
