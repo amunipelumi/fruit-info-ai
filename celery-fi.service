@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=amuni
 Group=amuni
+EnvironmentFile=/home/amuni/my_applications/.env
 WorkingDirectory=/home/amuni/my_applications/fruit-info-ai
 ExecStart=/home/amuni/my_applications/fruit-info-ai/celery-fi.sh
 
