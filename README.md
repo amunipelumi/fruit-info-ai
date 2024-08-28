@@ -99,5 +99,5 @@ See the [LICENSE](LICENSE) file for details.
 ### **Contact**
 - Name: Amuni Pelumi
 - Email: [Amuni Pelumi](mailto:work.amuni@gmail.com)
-- X fka Twitter: [Amuni Pelumi](https://x.com/amunipelumi)
 - LinkedIn: [Amuni Pelumi](https://www.linkedin.com/in/amunipelumi/)
+- X fka Twitter: [Amuni Pelumi](https://x.com/amunipelumi)
