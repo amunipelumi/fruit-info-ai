@@ -33,30 +33,30 @@ Below is a walkthrough on how to set it up on windows as a normal development se
 ### Steps
 - Clone the repository
    ```bash
-   git clone https://github.com/amunipelumi/fruit-info-ai  
-```
+      git clone https://github.com/amunipelumi/fruit-info-ai  
+   ```
 
 - Change directory
    ```bash
-   cd fruit-info-ai  
-```  
+      cd fruit-info-ai  
+   ```  
 
 - Setup a virtual environment
    ```bash
-   py -m venv <name of virtual environment> # for windows
-   python3 -m venv <name of virtual environment> # for linux
-```
+      py -m venv <name of virtual environment> # for windows
+      python3 -m venv <name of virtual environment> # for linux
+   ```
 
 - Activate virtual environment
    ```bash
-   .\<name of virtual environment>\Scripts\activate # for windows
-   source <name of virtual environment>\bin\activate # for linux
-```
+      .\<name of virtual environment>\Scripts\activate # for windows
+      source <name of virtual environment>\bin\activate # for linux
+   ```
 
 - Install dependencies
    ```bash
-   pip install -r requirements.txt 
-```
+      pip install -r requirements.txt 
+   ```
 
 - Setup environment variables
     - `DEBUG`: Set to `True` for development or `False` for production.
@@ -74,17 +74,17 @@ Below is a walkthrough on how to set it up on windows as a normal development se
 - Running the program
     - Windows
       ```bash
-        celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle--without-heartbeat -Ofair --pool=solo
-        py manage.py runserver 
+         celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle--without-heartbeat -Ofair --pool=solo
+         py manage.py runserver 
       ```
     - Ubuntu
       ```bash
-        celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
-        python3 manage.py runserver 
+         celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
+         python3 manage.py runserver 
       ```
     - Docker
       ```bash
-        docker-compose up -d
+         docker-compose up -d
       ```
 
 ### **Screenshots**
