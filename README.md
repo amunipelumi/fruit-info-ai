@@ -10,7 +10,7 @@ A lightweight version is hosted and can be accessed at [amunipelumi.online](http
 
 This project was born out of my need not only to build ML models but also to integrate them into well-functioning applications that can be used for practical purposes.  
 
-The [**ml_training**](ml_training/) folder above contains the training notebook and some of the training logs.  
+The training notebook, sample images and some of the training logs can be found [**here**](https://github.com/amunipelumi/ml-training/tree/main/fruit-info-ai/)  
 
 ### Table of Contents
 - [Setup and Installation](#Setup-and-Installation)
@@ -31,61 +31,61 @@ Below is a walkthrough on how to set it up on windows as a normal development se
 - [Docker](https://docs.docker.com/engine/install/)
 
 ### Steps
-1. Clone the repository
+- Clone the repository
    ```bash
    git clone https://github.com/amunipelumi/fruit-info-ai  
 ```
 
-2. Change directory
+- Change directory
    ```bash
    cd fruit-info-ai  
 ```  
 
-3. Setup a virtual environment
+- Setup a virtual environment
    ```bash
    py -m venv <name of virtual environment> # for windows
    python3 -m venv <name of virtual environment> # for linux
 ```
 
-4. Activate virtual environment
+- Activate virtual environment
    ```bash
    .\<name of virtual environment>\Scripts\activate # for windows
    source <name of virtual environment>\bin\activate # for linux
 ```
 
-5. Install dependencies
+- Install dependencies
    ```bash
    pip install -r requirements.txt 
 ```
 
-6. Setup environment variables
-  - `DEBUG`: Set to `True` for development or `False` for production.
-  - `CONTAINER`: Set to `True` for docker, otherwise `False`.
-  - `GROQ_KEY`: Setup your API key from [Groq](https://groq.com/)
-  - `DJANGO_SECRET`: Input your Django secret key.
-  - `ALLOWED_HOSTS`: Comma seperated values of your preferred hostnames/IP.
-  - `REDIS_IP`: Typically your localhost IP address.
-  - `REDIS_IP_C`: Typically "host.docker.internal" used by docker to talk to host machine.
-  - `REDIS_PASS`: Password of your redis server.
-  - `DATABASE_FRUIT_INFO`: Connection string to PostgreSQL database.
-  - `DATABASE_FRUIT_INFO_C`: Connection string to PostgreSQL database from inside docker container, remember to replace localhost with "host.docker.internal" if the database is running on host machine.
-  - `Optional variables`: Check settings.py to confirm other environment variables that needs to be set, checkout places with `os.getenv()` in the codes.
+- Setup environment variables
+    - `DEBUG`: Set to `True` for development or `False` for production.
+    - `CONTAINER`: Set to `True` for docker, otherwise `False`.
+    - `GROQ_KEY`: Setup your API key from [Groq](https://groq.com/)
+    - `DJANGO_SECRET`: Input your Django secret key.
+    - `ALLOWED_HOSTS`: Comma seperated values of your preferred hostnames/IP.
+    - `REDIS_IP`: Typically your localhost IP address.
+    - `REDIS_IP_C`: Typically "host.docker.internal" used by docker to talk to host machine.
+    - `REDIS_PASS`: Password of your redis server.
+    - `DATABASE_FRUIT_INFO`: Connection string to PostgreSQL database.
+    - `DATABASE_FRUIT_INFO_C`: Connection string to PostgreSQL database from inside docker container, remember to replace localhost with "host.docker.internal" if the database is running on host machine.
+    - `Optional variables`: Check settings.py to confirm other environment variables that needs to be set, checkout places with `os.getenv()` in the codes.
 
-7. Running the program
-  - Windows
-    ```bash
-      celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
-      py manage.py runserver 
-    ```
-  - Ubuntu
-    ```bash
-      celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
-      python3 manage.py runserver 
-    ```
-  - Docker
-    ```bash
-      docker-compose up -d
-    ```
+- Running the program
+    - Windows
+      ```bash
+        celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle--without-heartbeat -Ofair --pool=solo
+        py manage.py runserver 
+      ```
+    - Ubuntu
+      ```bash
+        celery -A fruit_info worker -l INFO --concurrency=4 --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
+        python3 manage.py runserver 
+      ```
+    - Docker
+      ```bash
+        docker-compose up -d
+      ```
 
 ### **Screenshots**
 ![Home Page](screenshots/image1.png)
