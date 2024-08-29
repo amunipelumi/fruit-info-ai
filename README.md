@@ -86,6 +86,7 @@ Below is a walkthrough on how to set it up on windows as a normal development se
       ```bash
          docker-compose up -d
       ```
+    - Note: Remember to configure NGINX or your preferred web server to handle static files otherwise set Debug to True.
 
 ### **Screenshots**
 ![Home Page](screenshots/image1.png)
