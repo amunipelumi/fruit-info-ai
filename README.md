@@ -50,7 +50,7 @@ Below is a walkthrough on how to set it up on windows as a normal development se
 - Activate virtual environment
    ```bash
       .\<name of virtual environment>\Scripts\activate # for windows
-      source <name of virtual environment>\bin\activate # for linux
+      source <name of virtual environment>/bin/activate # for linux
    ```
 
 - Install dependencies
