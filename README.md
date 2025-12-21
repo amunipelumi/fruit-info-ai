@@ -98,7 +98,6 @@ This project is licensed under the MIT License.
 See the [LICENSE](LICENSE) file for details.
 
 ### **Contact**
-- Name: Amuni Pelumi
-- Email: [Amuni Pelumi](mailto:work.amuni@gmail.com)
-- LinkedIn: [Amuni Pelumi](https://www.linkedin.com/in/amunipelumi/)
-- X fka Twitter: [Amuni Pelumi](https://x.com/amunipelumi)
+- Name: Akeem Amuni
+- Email: [Akeem Amuni](mailto:amuni.engr@gmail.com)
+- LinkedIn: [Akeem Amuni](https://www.linkedin.com/in/akeematamuni/)
