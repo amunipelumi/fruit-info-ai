@@ -10,7 +10,7 @@ A lightweight version is hosted and can be accessed at [amunipelumi.online](http
 
 This project was born out of my need not only to build ML models but also to integrate them into well-functioning applications that can be used for practical purposes.  
 
-The training notebook, sample images and some of the training logs can be found [**here**](https://github.com/amunipelumi/ml-training/tree/main/fruit-info-ai/)  
+The training notebook, sample images and some of the training logs can be found [**here**](https://github.com/emmanuelamuni/ml-training/tree/main/fruit-info-ai/)  
 
 ### Table of Contents
 - [Setup and Installation](#Setup-and-Installation)
@@ -33,7 +33,7 @@ Below is a walkthrough on how to set it up on windows as a normal development se
 ### Steps
 - Clone the repository
    ```bash
-      git clone https://github.com/amunipelumi/fruit-info-ai  
+      git clone https://github.com/emmanuelamuni/fruit-info-ai  
    ```
 
 - Change directory
@@ -98,6 +98,6 @@ This project is licensed under the MIT License.
 See the [LICENSE](LICENSE) file for details.
 
 ### **Contact**
-- Name: Akeem Amuni
-- Email: [Akeem Amuni](mailto:amuni.engr@gmail.com)
-- LinkedIn: [Akeem Amuni](https://www.linkedin.com/in/akeematamuni/)
+- Name: Emmanuel Amuni
+- Email: [Emmanuel Amuni](mailto:amuni.engr@gmail.com)
+- LinkedIn: [Emmanuel Amuni](https://www.linkedin.com/in/emmanuelamuni/)
