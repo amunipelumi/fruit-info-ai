@@ -4,9 +4,7 @@ Fruit Info AI is a machine learning-powered application that identifies various 
 ### **Description**
 This is a Django application that utilizes a TensorFlow classification model to identify and provide health benefits for up to 100 different types of fruit.   
 
-The inference model is ONNX format integrated with an AI agent leveraging [Groq](https://groq.com/) for detailed inference to deliver excellent result.  
-
-A lightweight version is hosted and can be accessed at [amunipelumi.online](https://amunipelumi.online/).  
+The inference model is ONNX format integrated with an AI agent leveraging [Groq](https://groq.com/) for detailed inference to deliver excellent result.    
 
 This project was born out of my need not only to build ML models but also to integrate them into well-functioning applications that can be used for practical purposes.  
 
